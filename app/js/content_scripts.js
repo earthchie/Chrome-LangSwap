@@ -4,7 +4,7 @@
     chrome.runtime.onMessage.addListener(function (action, e, sendResponse) {
         
         if (action.name === 'getSelectedText') {
-            sendResponse(window.getSelection().toString());
+            sendResponse(window.getSelection().toString() || '');
         }
 
     });
