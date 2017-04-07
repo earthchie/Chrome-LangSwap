@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+
+  "name": "แปลที แม่งพิมพ์ผิด",
+  "description": "ใช้แปลข้อความไทย ที่พิมพ์ในคีย์บอร์ดอังกฤษ",
+  "version": "1.0.0",
+    
+  "permissions": [
+    "activeTab", "*://*/*"
+  ],
+    
+  "content_scripts": [{
+    "matches": ["*://*/*"],
+    "js": ["app/js/content_scripts.js"],
+    "run_at": "document_end",
+    "all_frames": false
+  }],
+    
+  "browser_action": {
+    "default_icon": "app/images/langswap.png",
+    "default_popup": "app/index.html"
+  }
+}
