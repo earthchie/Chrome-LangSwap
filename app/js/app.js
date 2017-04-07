@@ -7,6 +7,16 @@
                 chrome.tabs.sendMessage(tabId, {name: action}, callback);
             });
         },
+        
+        swap = function (json) {
+            var swap = {};
+            
+            for(var key in json){
+                swap[json[key]] = key;
+            }
+            
+            return swap;
+        },
 
         render = function () {
 
@@ -108,6 +118,10 @@
                 $result = document.getElementById('result'),
                 result = '';
             
+            if(franc($input.value) === 'tha'){
+                keymap = swap(keymap);
+            }
+            
             $input.value.split('').map(function (c) {
                 result += keymap[c] || c;
             });
@@ -126,7 +140,8 @@
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 
         run('getSelectedText', tabs[0].id, function (text) {
-            $input.value = text;
+            console.log(text);
+            $input.value = text || '';
             render();
         });
 
